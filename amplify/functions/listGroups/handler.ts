@@ -1,5 +1,5 @@
 import { CognitoIdentityProviderClient, AdminListGroupsForUserCommand, ListGroupsCommand } from '@aws-sdk/client-cognito-identity-provider'
-import { env } from '@env/listGroupsLambda'
+import { env } from '@env/listGroups'
 
 export const handler: AWSLambda.Handler = async (event) => {
   const client = new CognitoIdentityProviderClient()
