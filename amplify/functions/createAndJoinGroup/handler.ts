@@ -1,5 +1,5 @@
 import { CognitoIdentityProviderClient, AdminAddUserToGroupCommand, GetGroupCommand, CreateGroupCommand } from '@aws-sdk/client-cognito-identity-provider'
-import { env } from '@env/createAndJoinGroupFunction'
+import { env } from '@env/createAndJoinGroup'
 import type { AppSyncIdentityCognito, AppSyncResolverHandler } from 'aws-lambda';
 
 export const handler: AppSyncResolverHandler<{ name: string }, boolean> = async (event) => {
