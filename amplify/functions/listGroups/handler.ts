@@ -1,15 +1,14 @@
 import { CognitoIdentityProviderClient, AdminListGroupsForUserCommand, ListGroupsCommand } from '@aws-sdk/client-cognito-identity-provider'
-import { env } from '@env/listGroups'
 
 export const handler: AWSLambda.Handler = async (event) => {
   const client = new CognitoIdentityProviderClient()
 
   const allGroups = await client.send(new ListGroupsCommand({
-    UserPoolId: env.amplifyAuth_USERPOOL_ID,
+    UserPoolId: process.env.amplifyAuth_USERPOOL_ID,
   }))
   
   const myGroups = await client.send(new AdminListGroupsForUserCommand({
-    UserPoolId: env.amplifyAuth_USERPOOL_ID,
+    UserPoolId: process.env.amplifyAuth_USERPOOL_ID,
     Username: (event.identity as AWSLambda.AppSyncIdentityCognito).sub,
   }))
 

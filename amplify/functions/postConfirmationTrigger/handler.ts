@@ -1,12 +1,11 @@
 import { CognitoIdentityProviderClient, AdminAddUserToGroupCommand } from '@aws-sdk/client-cognito-identity-provider'
 import type { PostConfirmationTriggerHandler  } from 'aws-lambda'
-import { env } from '@env/postConfirmationTrigger'
 
 export const handler: PostConfirmationTriggerHandler = async (event) => {
   const cognitoIdentityClient = new CognitoIdentityProviderClient()
   
   const addUserParams = {
-    GroupName: env.GROUP,
+    GroupName: process.env.GROUP,
     UserPoolId: event.userPoolId,
     Username: event.userName
   }

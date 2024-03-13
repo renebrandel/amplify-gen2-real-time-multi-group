@@ -1,5 +1,4 @@
 import { CognitoIdentityProviderClient, AdminAddUserToGroupCommand } from '@aws-sdk/client-cognito-identity-provider'
-import { env } from '@env/joinGroup'
 import type { AppSyncIdentityCognito, AppSyncResolverHandler } from 'aws-lambda';
 
 export const handler: AppSyncResolverHandler<{ name: string }, boolean> = async (event) => {
@@ -9,7 +8,7 @@ export const handler: AppSyncResolverHandler<{ name: string }, boolean> = async 
   
   const addUserParams = {
     GroupName: groupName,
-    UserPoolId: env.amplifyAuth_USERPOOL_ID,
+    UserPoolId: process.env.amplifyAuth_USERPOOL_ID,
     Username: (event.identity as AppSyncIdentityCognito).sub
   }
 
