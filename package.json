@@ -17,8 +17,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@aws-amplify/backend": "^0.13.0-beta.5",
-    "@aws-amplify/backend-cli": "^0.12.0-beta.5",
+    "@aws-amplify/backend": "^0.13.0-beta.6",
+    "@aws-amplify/backend-cli": "^0.12.0-beta.6",
     "@types/aws-lambda": "^8.10.136",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",

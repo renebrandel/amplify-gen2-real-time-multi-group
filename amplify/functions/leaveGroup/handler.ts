@@ -1,7 +1,8 @@
 import { CognitoIdentityProviderClient, AdminRemoveUserFromGroupCommand } from '@aws-sdk/client-cognito-identity-provider'
-import type { AppSyncIdentityCognito, AppSyncResolverHandler } from 'aws-lambda';
+import type { AppSyncIdentityCognito } from 'aws-lambda';
+import { Schema } from '../../data/resource';
 
-export const handler: AppSyncResolverHandler<{ name: string }, boolean> = async (event) => {
+export const handler: Schema["leaveGroup"]["functionHandler"] = async (event) => {
   const client = new CognitoIdentityProviderClient()
 
   const groupName = event.arguments.name

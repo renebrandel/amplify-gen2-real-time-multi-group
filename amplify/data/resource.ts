@@ -24,7 +24,7 @@ const schema = a.schema({
     })
     .returns(a.boolean())
     .authorization([a.allow.private()])
-    .function('createAndJoinGroup'),
+    .handler(a.handler.function(createAndJoinGroup)),
 
   joinGroup: a.mutation()
     .arguments({
@@ -32,20 +32,20 @@ const schema = a.schema({
     })
     .returns(a.boolean())
     .authorization([a.allow.private()])
-    .function('joinGroup'),
+    .handler(a.handler.function(joinGroup)),
 
   listGroups: a.query()
     .arguments({test: a.boolean()})
     .returns(a.ref('Group').required().array().required())
     .authorization([a.allow.private()])
-    .function('listGroups'),
+    .handler(a.handler.function(listGroups)),
 
   leaveGroup: a.mutation()
     .arguments({
       name: a.string().required()
     }).returns(a.boolean())
     .authorization([a.allow.private()])
-    .function('leaveGroup'),
+    .handler(a.handler.function(leaveGroup)),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -55,10 +55,4 @@ export const data = defineData({
   authorizationModes: {
     defaultAuthorizationMode: 'userPool',
   },
-  functions: {
-    listGroups: listGroups,
-    createAndJoinGroup: createAndJoinGroup,
-    leaveGroup: leaveGroup,
-    joinGroup: joinGroup
-  }
 });

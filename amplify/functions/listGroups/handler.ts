@@ -1,6 +1,7 @@
 import { CognitoIdentityProviderClient, AdminListGroupsForUserCommand, ListGroupsCommand } from '@aws-sdk/client-cognito-identity-provider'
+import { Schema } from '../../data/resource'
 
-export const handler: AWSLambda.Handler = async (event) => {
+export const handler: Schema["listGroups"]["functionHandler"] = async (event) => {
   const client = new CognitoIdentityProviderClient()
 
   const allGroups = await client.send(new ListGroupsCommand({
@@ -13,7 +14,7 @@ export const handler: AWSLambda.Handler = async (event) => {
   }))
 
   return allGroups.Groups?.map(group => ({
-    name: group.GroupName,
+    name: group.GroupName ?? "",
     joined: myGroups.Groups?.some(g => g.GroupName === group.GroupName) ?? false,
   })) ?? []
 }
